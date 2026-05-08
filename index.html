@@ -3,59 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descargar Gabolinux</title>
+    <title>Descarga y Configuración - JoseFelix</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
             margin: 0;
+            padding: 20px;
         }
-        .card {
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        h1 { color: #333; margin-top: 0; }
-        p { color: #666; margin-bottom: 2rem; line-height: 1.5; }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
         .btn-download {
-            background-color: #007bff; /* Color azul estilo MediaFire */
+            background-color: #007bff;
             color: white;
-            padding: 15px 25px;
+            padding: 18px 30px;
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
             display: inline-block;
         }
         .btn-download:hover {
             background-color: #0056b3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+        }
+        h2 {
+            color: #2c3e50;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            border: 1px solid #181a1f;
+        }
+        .key-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Archivo JoseFelix</h1>
-        <p>Presiona el botón para ir al servidor de descarga oficial en MediaFire.</p>
-        
-        <!-- Enlace modificado a MediaFire -->
-        <a href="https://www.mediafire.com/file/jzd2k3b6mgd9yuu/josefelix.zip/file" 
+<div class="container">
+    <div class="header">
+        <h1>Instalación JoseFelix</h1>
+        <p>Descarga el archivo necesario y sigue las instrucciones a continuación.</p>
+    </div>
+
+    <div class="btn-container">
+        <a href="https://www.mediafire.com/file/e205im1f2xyx668/josefelix.zip/file" 
            class="btn-download" 
            target="_blank" 
            rel="noopener noreferrer">
-            🚀 Ir a Descargar (GABOLINUX)
+            ⬇️ Descargar josefelix.zip (MediaFire)
         </a>
     </div>
+
+    <h2>Instrucciones de Configuración</h2>
+    <p>Copia y pega estos comandos en tu terminal para aplicar los cambios en el sistema:</p>
+
+    <pre>
+# 1. Crear carpetas necesarias
+mkdir -p /home/usuario/.iconos
+
+# 2. Limpiar animaciones de Lubuntu (el turpial dando vueltas)
+sudo rm /usr/share/plymouth/themes/lubuntu-logo/spinner/animation-*.png
+sudo rm /usr/share/plymouth/themes/lubuntu-logo/spinner/throbber-*.png
+sudo rm /usr/share/plymouth/themes/lubuntu-logo/spinner/spinner.plymouth
+
+# 3. Aplicar tu logo de carga (asumiendo que está en tu carpeta .iconos)
+sudo cp /home/usuario/.iconos/spinner.plymouth /usr/share/plymouth/themes/lubuntu-logo/spinner/spinner.plymouth
+sudo cp /home/usuario/.iconos/arranque.png /usr/share/plymouth/themes/lubuntu-logo/spinner/animation-0001.png
+sudo cp /home/usuario/.iconos/arranque.png /usr/share/plymouth/themes/lubuntu-logo/spinner/throbber-0001.png
+
+# 4. Cambiar el icono del menú de inicio
+sudo cp /home/usuario/.iconos/lxqt-about.svg /usr/share/icons/hicolor/scalable/apps/lxqt-about.svg
+sudo cp /home/usuario/.iconos/lxqt-about.svg /usr/share/icons/hicolor/scalable/apps/lxqt.svg
+sudo cp /home/usuario/.iconos/mainmenu.svg /usr/share/lxqt/themes/ambiance/mainmenu.svg
+sudo cp /home/usuario/.iconos/wall.png /usr/share/sddm/themes/lubuntu/wall.png
+
+# 5. Aplicar cambios al sistema de arranque
+sudo update-initramfs -u -k all
+
+# 6. Para cambiar los iconos de office
+sed -i 's|^Icon=.*|Icon=/home/usuario/iconos/excel|' ~/Desktop/Microsoft\ Office\ Excel\ 2003.desktop
+sed -i 's|^Icon=.*|Icon=/home/usuario/iconos/word|' ~/Desktop/Microsoft\ Office\ Word\ 2003.desktop
+sed -i 's|^Icon=.*|Icon=/home/usuario/iconos/powerpoint|' ~/Desktop/Microsoft\ Office\ PowerPoint\ 2003.desktop
+
+echo "¡Configuraciones cargadas con éxito!"
+
+# 7. Para instalar office
+sudo apt install wine
+mkdir -p ~/disco_office
+sudo mount -o loop ~/Descargas/"OFFICE 11 03 SPA.iso" ~/disco_office
+cd ~/disco_office
+wine SETUP.EXE
+    </pre>
+
+    <div class="key-box">
+        🔑 CLAVE DE ACTIVACIÓN DE OFFICE: <br>
+        GWH28-DGCMP-P6RC4-6J4MT-3HFDY
+    </div>
+</div>
 
 </body>
 </html>
